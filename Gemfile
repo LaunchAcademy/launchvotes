@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "2.1.5"
 
 gem 'rails', '4.2.3'
 gem 'pg'
@@ -33,3 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
 end
 
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
