@@ -6,6 +6,15 @@ describe User do
   it { should have_valid(:uid).when("1234") }
   it { should_not have_valid(:uid).when(nil, "") }
 
+  describe ".nominees" do
+    let(:user) { create(:user) }
+    let(:nominees) { create_list(:user, 5) }
+    it "shoud return all users except the one specified" do
+      expect(User.nominees(user)).to include(*nominees)
+      expect(User.nominees(user)).to_not include(user)
+    end
+  end
+
   describe ".from_omniauth" do
     context "with a valid omniauth hash" do
       it "should return a newly created user if new user" do

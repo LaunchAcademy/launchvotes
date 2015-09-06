@@ -2,7 +2,7 @@ module AuthenticationHelper
   def sign_in_as(user)
     mock_auth_for(user)
     visit root_path
-    click_link "Sign In With Github"
+    click_link "Sign in with Github"
   end
 
   def mock_auth_for(user)
