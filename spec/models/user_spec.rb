@@ -7,17 +7,28 @@ describe User do
   it { should_not have_valid(:uid).when(nil, "") }
 
   describe ".from_omniauth" do
-    it "should return a newly created user if they are not in the database" do
-      expect { User.from_omniauth(mock_github_auth!) }.
-        to change { User.count }.from(0).to(1)
-      expect(User.from_omniauth(mock_github_auth!)).to be_a(User)
+    context "with a valid omniauth hash" do
+      it "should return a newly created user if new user" do
+        expect { User.from_omniauth(mock_github_auth!) }.
+          to change { User.count }.from(0).to(1)
+        expect(User.from_omniauth(mock_github_auth!)).to be_a(User)
+      end
+
+      it "should return an existing user if user has previously authenticated" do
+        user = User.from_omniauth(mock_github_auth!)
+        expect { User.from_omniauth(mock_github_auth!) }.
+          not_to change { User.count }
+        expect(User.from_omniauth(mock_github_auth!)).to eq(user)
+      end
     end
 
-    it "should return an existing user if they are in the database" do
-      user = User.from_omniauth(mock_github_auth!)
-      expect { User.from_omniauth(mock_github_auth!) }.
-        not_to change { User.count }
-      expect(User.from_omniauth(mock_github_auth!)).to eq(user)
+    context "with an invalid omniauth hash" do
+      it "should return an unpersisted user object" do
+        user = User.from_omniauth(invalid_mock_github_auth!)
+        expect(User.count).to eq(0)
+        expect(user).to be_a(User)
+        expect(user.persisted?).to eq(false)
+      end
     end
   end
 
@@ -35,7 +46,9 @@ describe User do
       user.update_from_omniauth(mock_github_auth!)
       expect(user.reload.email).to eq("jarlax@launchacademy.com")
       expect(user.reload.name).to eq("Alex Jarvis")
-      expect(user.reload.image).to eq("https://avatars2.githubusercontent.com/u/174825?v=3&s=400")
+      expect(user.reload.image).to eq(
+        "https://avatars2.githubusercontent.com/u/174825?v=3&s=400"
+      )
     end
   end
 end

@@ -7,10 +7,7 @@ class User < ActiveRecord::Base
   validates :uid, presence: true
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-    end
+    find_or_create_by(provider: auth.provider, uid: auth.uid)
   end
 
   def update_from_omniauth(auth)
