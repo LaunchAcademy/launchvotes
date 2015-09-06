@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'shoulda-matchers'
+require File.join(File.dirname(__FILE__), 'support/authentication')
 require File.join(File.dirname(__FILE__), 'support/valid_attribute')
 require File.join(File.dirname(__FILE__), 'support/factory_girl')
 require 'capybara/rspec'
@@ -52,5 +53,11 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
+  config.before :each do
+    OmniAuth.config.mock_auth[:github] = nil
+  end
+  OmniAuth.config.test_mode = true
+  config.include AuthenticationHelper
+  config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!
 end
