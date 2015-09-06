@@ -6,7 +6,7 @@ feature 'user signs in', %{
   So that I can regain access to my account
 } do
   context "new user" do
-    scenario "signs in with github" do
+    scenario "github authenticates user" do
       mock_github_auth!
 
       visit root_path
@@ -17,7 +17,16 @@ feature 'user signs in', %{
       expect(current_path).to eq root_path
     end
 
-    scenario "cannot sign in with invalid credentials" do
+    scenario "github authenticates user but returns invalid omniauth hash" do
+      OmniAuth.config.mock_auth[:github] = invalid_mock_github_auth!
+
+      visit root_path
+      click_link "Sign In With Github"
+
+      expect(page).to have_content("Invalid credentials returned from Github")
+    end
+
+    scenario "github fails to authenticate user" do
       OmniAuth.config.mock_auth[:github] = :invalid_credentials
 
       visit root_path

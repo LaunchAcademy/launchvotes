@@ -114,4 +114,13 @@ module AuthenticationHelper
       }
     )
   end
+
+  def invalid_mock_github_auth!
+    invalid_mock_auth = double("github_auth").tap do |auth|
+      allow(auth).to receive(:provider).and_return("")
+      allow(auth).to receive(:uid).and_return("")
+    end
+
+    OmniAuth.config.mock_auth[:github] = invalid_mock_auth
+  end
 end

@@ -8,6 +8,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user
     else
       session["devise.github_data"] = request.env["omniauth.auth"]
+      flash[:alert] = "Invalid credentials returned from Github"
       redirect_to root_path
     end
   end
