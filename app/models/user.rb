@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   validates :provider, presence: true, inclusion: ["github"]
   validates :uid, presence: true
+  scope :nominees, -> (user) { where.not(id: user.id) }
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid)
