@@ -1,6 +1,6 @@
 module Admin
   class TeamsController < AdminController
-    before_action :get_team, only: [:show, :edit, :update]
+    before_action :get_team, only: [:show, :edit, :update, :destroy]
 
     def index
       @teams = Team.all
@@ -36,6 +36,12 @@ module Admin
         flash[:alert] = "Team Not Updated"
         render :edit
       end
+    end
+
+    def destroy
+      @team.destroy
+      flash[:notice] = "Team Destroyed!"
+      redirect_to admin_teams_path
     end
 
     private

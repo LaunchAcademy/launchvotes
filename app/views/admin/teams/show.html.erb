@@ -3,3 +3,5 @@
   <h2>Currently Enrolling</h2>
 <% end %>
 <%= link_to "Edit Team", edit_admin_team_path(@team) %>
+<%= link_to "Destroy Team", admin_team_path(@team), method: :delete %>
+<%= link_to "See All Teams", admin_teams_path %>
