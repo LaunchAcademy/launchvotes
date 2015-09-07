@@ -1,12 +1,12 @@
 require "rails_helper"
 
-feature 'admin edits a team', %{
+feature 'admin updates a team', %{
 } do
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }
   let!(:team) { create(:team) }
 
-  scenario "signed in admin edits team" do
+  scenario "signed in admin updates team" do
     sign_in_as(admin)
     visit admin_team_path(team)
     click_link "Edit Team"
