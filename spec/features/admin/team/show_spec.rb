@@ -15,14 +15,14 @@ feature 'admin sees team show page', %{
 
   scenario "non-admin user cannot see page" do
     sign_in_as(user)
-    visit admin_teams_path(team)
+    visit admin_team_path(team)
 
     expect(page).to have_content "The page you were looking for doesn't exist."
     expect(page.status_code).to eq(404)
   end
 
   scenario "unauthenitcated user cannot see page" do
-    visit admin_teams_path(team)
+    visit admin_team_path(team)
 
     expect(page).to have_content "The page you were looking for doesn't exist."
     expect(page.status_code).to eq(404)

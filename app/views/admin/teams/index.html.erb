@@ -1,7 +1,7 @@
 <ul>
   <% @teams.each do |team| %>
     <li>
-      <%= link_to team.name, admin_teams_path(team) %>
+      <%= link_to team.name, admin_team_path(team) %>
     </li>
   <% end %>
 </ul>
