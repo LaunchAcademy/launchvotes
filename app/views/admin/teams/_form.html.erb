@@ -1,4 +1,4 @@
-<%= form_for @team, url: admin_team_path(@team) do |f| %>
+<%= form_for @team, url: url do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :name %>
