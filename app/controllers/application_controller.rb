@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def after_sign_in_path_for(_resource)
-    nominations_path
+  def after_sign_in_path_for(user)
+    if user.admin?
+      admin_teams_path
+    else
+      nominations_path
+    end
   end
 
   def after_sign_out_path_for(_resource)
