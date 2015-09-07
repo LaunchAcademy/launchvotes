@@ -9,7 +9,23 @@ module Admin
     def show
     end
 
+    def new
+      @team = Team.new
+    end
+
     def edit
+    end
+
+    def create
+      @team = Team.new(team_params)
+
+      if @team.save
+        flash[:notice] = "Team Created!"
+        redirect_to admin_team_path(@team)
+      else
+        flash[:alert] = "Team Not Created"
+        render :new
+      end
     end
 
     def update
