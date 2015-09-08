@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907034728) do
+ActiveRecord::Schema.define(version: 20150907202755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "team_memberships", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "team_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "team_memberships", ["team_id"], name: "index_team_memberships_on_team_id", using: :btree
+  add_index "team_memberships", ["user_id", "team_id"], name: "index_team_memberships_on_user_id_and_team_id", unique: true, using: :btree
+  add_index "team_memberships", ["user_id"], name: "index_team_memberships_on_user_id", using: :btree
+
   create_table "teams", force: :cascade do |t|
-    t.string  "name",                      null: false
-    t.boolean "enrolling", default: false, null: false
+    t.string   "name",                       null: false
+    t.boolean  "enrolling",  default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "teams", ["name"], name: "index_teams_on_name", unique: true, using: :btree

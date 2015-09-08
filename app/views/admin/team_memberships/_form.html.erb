@@ -1,0 +1,6 @@
+<%= form_for @team_membership, url: admin_team_memberships_path(@team) do |f| %>
+  <%= f.label :user_id %>
+  <%= f.select :user_id, options_for_select(User.nonmembers(@team).pluck(:name, :id)) %>
+
+  <%= f.submit "Add To Team" %>
+<% end %>

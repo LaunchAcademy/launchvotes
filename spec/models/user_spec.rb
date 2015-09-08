@@ -1,10 +1,25 @@
 require 'rails_helper'
 
 describe User do
+  it { should have_many(:team_memberships) }
+  it { should have_many(:teams) }
+
   it { should have_valid(:provider).when("github") }
   it { should_not have_valid(:provider).when(nil, "", "facebook") }
+
   it { should have_valid(:uid).when("1234") }
   it { should_not have_valid(:uid).when(nil, "") }
+
+  describe ".nonmembers" do
+    let!(:user) { create(:user) }
+    let!(:team_membership) { create(:team_membership) }
+    let(:team_member) { team_membership.user }
+    let(:team) { team_membership.team }
+    it "should return users not part of the team" do
+      expect(User.nonmembers(team)).to include(user)
+      expect(User.nonmembers(team)).to_not include(team_member)
+    end
+  end
 
   describe ".nominees" do
     let(:user) { create(:user) }

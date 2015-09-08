@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :nominations, only: [:index]
 
   namespace :admin do
-    resources :teams
+    resources :teams do
+      resources :team_memberships, only: [:create], as: :memberships
+    end
   end
 end
