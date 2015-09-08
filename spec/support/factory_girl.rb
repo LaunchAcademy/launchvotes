@@ -22,4 +22,9 @@ FactoryGirl.define do
       enrolling true
     end
   end
+
+  factory :team_membership do
+    user
+    team
+  end
 end

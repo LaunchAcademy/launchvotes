@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 describe Team do
+  it { should have_many(:team_memberships) }
+  it { should have_many(:users) }
+
   it { should have_valid(:name).when("Admin Overlords") }
   it { should_not have_valid(:name).when(nil, "") }
+  it { should validate_uniqueness_of(:name) }
+
   it { should have_valid(:enrolling).when(false, true) }
   it { should_not have_valid(:enrolling).when(nil, "") }
 

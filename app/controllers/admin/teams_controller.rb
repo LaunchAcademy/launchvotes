@@ -7,6 +7,7 @@ module Admin
     end
 
     def show
+      @team_membership = TeamMembership.new
     end
 
     def new
