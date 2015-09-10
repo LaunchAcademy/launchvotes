@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
     self.image = auth.info.image
     save
   end
+
+  def join_enrolling_team!
+    TeamMembership.create(user: self, team: Team.enrolling.first)
+  end
 end

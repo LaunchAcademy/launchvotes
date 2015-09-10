@@ -4,6 +4,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       @user.update_from_omniauth(request.env["omniauth.auth"])
+      @user.join_enrolling_team! unless @user.teams.count > 0
       flash[:notice] = "Signed in as #{@user.name}"
       sign_in_and_redirect @user
     else

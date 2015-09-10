@@ -5,6 +5,7 @@ feature 'user signs in', %{
   I want to sign in
   So that I can regain access to my account
 } do
+
   context "new user" do
     scenario "github authenticates user" do
       mock_github_auth!
@@ -15,6 +16,16 @@ feature 'user signs in', %{
       expect(page).to have_content("Signed in as Alex Jarvis")
       expect(page).to have_link("Sign Out", href: destroy_user_session_path)
       expect(current_path).to eq nominations_path
+    end
+
+    scenario "expect new user to join currently enrolling team" do
+      mock_github_auth!
+      enrolling_team = Team.first
+
+      visit root_path
+      click_link "Sign in with Github"
+
+      expect(enrolling_team.users).to include(User.first)
     end
 
     scenario "github authenticates user but returns invalid omniauth hash" do
