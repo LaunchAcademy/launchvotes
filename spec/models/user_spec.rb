@@ -75,4 +75,12 @@ describe User do
       )
     end
   end
+
+  describe "#join_enrolling_team!" do
+    let(:user) { create(:user) }
+    it "should join the enrolling team if the user does not have a team" do
+      user.join_enrolling_team!
+      expect(user.teams).to include(Team.enrolling.first)
+    end
+  end
 end
