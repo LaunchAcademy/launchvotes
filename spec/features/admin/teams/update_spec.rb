@@ -5,6 +5,7 @@ feature 'admin updates a team', %{
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }
   let!(:team) { create(:team) }
+  let!(:enrolling_team) { create(:enrolling_team) }
 
   scenario "signed in admin updates team" do
     sign_in_as(admin)
@@ -30,6 +31,17 @@ feature 'admin updates a team', %{
     expect(page).to have_content("Team Not Updated")
     expect(page).to have_content("Name can't be blank")
     expect(page.has_checked_field? "Enrolling").to eq(true)
+  end
+
+  scenario "admin cannot make a currently enrolling team unenrolling" do
+    sign_in_as(admin)
+    visit admin_team_path(enrolling_team)
+    click_link "Edit Team"
+    uncheck "Enrolling"
+    click_button "Update Team"
+
+    expect(page).to have_content("Team Not Updated")
+    expect(page).to have_content("There Must Always Be One Enrolling Team")
   end
 
   scenario "non-admin user cannot see page" do
