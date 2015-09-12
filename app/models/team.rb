@@ -2,25 +2,28 @@ class Team < ActiveRecord::Base
   has_many :team_memberships, dependent: :destroy
   has_many :users, through: :team_memberships
 
-  validates :name, presence: true, uniqueness: true
-  validates :enrolling, inclusion: { in: [true, false] }
-  validate :ensure_enrolling_team, on: :update
-
   scope :enrolling, -> { where(enrolling: true) }
 
-  before_save do
-    Team.enrolling.update_all(enrolling: false) if enrolling
-  end
+  before_save :update_enrolling_teams
+  before_destroy :prevent_enrolling_team_destroy
 
-  before_destroy do
-    !enrolling?
-  end
+  validates :name, presence: true, uniqueness: true
+  validates :enrolling, inclusion: { in: [true, false] }
+  validate :ensure_one_enrolling_team, on: :update
 
   private
 
-  def ensure_enrolling_team
+  def update_enrolling_teams
+    Team.enrolling.update_all(enrolling: false) if enrolling
+  end
+
+  def prevent_enrolling_team_destroy
+    !enrolling?
+  end
+
+  def ensure_one_enrolling_team
     unless enrolling
-      errors.add(:enrolling, "There Must Always Be One Enrolling Team")
+      errors.add(:enrolling, "must be set on at least one team")
     end
   end
 end
