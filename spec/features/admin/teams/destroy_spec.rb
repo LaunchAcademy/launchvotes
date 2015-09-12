@@ -19,10 +19,8 @@ feature 'admin destroys a team', %{
   scenario "admin cannot destroy currently enrolling team" do
     sign_in_as(admin)
     visit admin_team_path(enrolling_team)
-    click_link "Destroy Team"
 
-    expect(page).to have_content("Team Not Destroyed. You Cannot Destroy An Enrolling Team")
-    expect(page).to have_content(enrolling_team.name)
-    expect { enrolling_team.reload }.not_to raise_error
+    expect(page).to have_content("Currently Enrolling")
+    expect(page).to_not have_link("Destroy Team")
   end
 end

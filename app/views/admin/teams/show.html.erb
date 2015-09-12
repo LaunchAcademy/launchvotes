@@ -1,9 +1,12 @@
 <h1><%= @team.name %></h1>
-<% if @team.enrolling %>
-  <h2>Currently Enrolling</h2>
-<% end %>
 <%= link_to "Edit Team", edit_admin_team_path(@team) %>
-<%= link_to "Destroy Team", admin_team_path(@team), method: :delete %>
+
+<% if @team.enrolling? %>
+  <p>Currently Enrolling</p>
+<% else %>
+  <%= link_to "Destroy Team", admin_team_path(@team), method: :delete %>
+<% end %>
+
 <%= link_to "See All Teams", admin_teams_path %>
 
 <% unless User.nonmembers(@team).blank? %>
@@ -16,6 +19,6 @@
       <%= user.name %>
       <%= link_to "Remove From Team", admin_team_membership_path(
         TeamMembership.find_by(user: user, team: @team)), method: :delete %>
-    </li>
-  <% end %>
+  </li>
+<% end %>
 </ul>

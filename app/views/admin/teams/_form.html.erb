@@ -4,8 +4,10 @@
   <%= f.label :name %>
   <%= f.text_field :name %>
 
-  <%= f.label :enrolling %>
-  <%= f.check_box :enrolling %>
+  <% unless @team.persisted? && @team.enrolling? %>
+    <%= f.label :enrolling %>
+    <%= f.check_box :enrolling %>
+  <% end %>
 
   <%= f.submit %>
 <% end %>
