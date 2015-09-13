@@ -8,6 +8,7 @@ feature 'admin creates a team', %{
 
   scenario "signed in admin creates team" do
     sign_in_as(admin)
+    visit admin_teams_path
     click_link "Create Team"
     fill_in "Name", with: team.name
     check "Enrolling"

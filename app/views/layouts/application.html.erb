@@ -16,6 +16,7 @@
 
     <section class="top-bar-section">
       <ul class="right">
+        <li><%= link_to "Teams", admin_teams_path %></li>
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- end -%>
