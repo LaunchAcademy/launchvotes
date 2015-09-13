@@ -15,7 +15,7 @@ feature 'user signs in', %{
 
       expect(page).to have_content("Signed in as Alex Jarvis")
       expect(page).to have_link("Sign Out", href: destroy_user_session_path)
-      expect(current_path).to eq nominations_path
+      expect(current_path).to eq team_path(Team.enrolling.first)
     end
 
     scenario "expect new user to join currently enrolling team" do

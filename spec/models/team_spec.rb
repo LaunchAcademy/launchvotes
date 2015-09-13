@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe Team do
-  it { should have_many(:team_memberships) }
-  it { should have_many(:users) }
+  it { should have_many(:team_memberships).dependent(:destroy) }
+  it { should have_many(:users).through(:team_memberships) }
+  it { should have_many(:nominations).through(:team_memberships) }
 
   it { should have_valid(:name).when("Admin Overlords") }
   it { should_not have_valid(:name).when(nil, "") }
