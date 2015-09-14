@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates :provider, presence: true, inclusion: { in: ["github"] }
   validates :uid, presence: true
 
-  scope :nominees, -> (user) { where.not(id: user.id) }
   scope :nonmembers, -> (team) { where.not(id: team.users.pluck(:id)) }
 
   def self.from_omniauth(auth)

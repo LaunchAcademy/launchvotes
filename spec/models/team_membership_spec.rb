@@ -15,13 +15,21 @@ describe TeamMembership do
   it { should have_valid(:team).when(Team.new) }
   it { should_not have_valid(:team).when(nil) }
 
-  describe ".without" do
+  describe ".all_except" do
     let(:user) { create(:user) }
     let!(:team_membership) { create(:team_membership, user: user) }
     let!(:another_team_membership) { create(:team_membership) }
-    it "should return all team memberships without the user" do
-      expect(TeamMembership.without(user)).to include(another_team_membership)
-      expect(TeamMembership.without(user)).to_not include(team_membership)
+    it "should return all team memberships except the one for the user" do
+      expect(TeamMembership.all_except(user)).to include(another_team_membership)
+      expect(TeamMembership.all_except(user)).to_not include(team_membership)
+    end
+  end
+
+  describe ".select_options" do
+    let!(:team_membership) { create(:team_membership) }
+    it "should return the name of the member and id of the membership" do
+      expect(TeamMembership.select_options).
+        to include([team_membership.user.name, team_membership.id])
     end
   end
 end
