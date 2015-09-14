@@ -1,10 +1,4 @@
-<%= form_for [@team, @nomination] do |f| %>
-  <%= f.select :nominee_membership_id, options_for_select(@nominee_options) %>
-
-  <%= f.text_field :body %>
-
-  <%= f.submit "Submit" %>
-<% end %>
+<%= render "nominations/form" %>
 
 <ul class="nominations">
   <%= render @nominations %>
