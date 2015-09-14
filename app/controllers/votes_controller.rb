@@ -5,4 +5,12 @@ class VotesController < ApplicationController
     flash[:notice] = "Vote Cast!"
     redirect_to team_path(@nomination.team)
   end
+
+  def destroy
+    @nomination = Nomination.find(params[:nomination_id])
+    @vote = Vote.find(params[:id])
+    @vote.destroy
+    flash[:notice] = "Vote Retracted!"
+    redirect_to team_path(@nomination.team)
+  end
 end

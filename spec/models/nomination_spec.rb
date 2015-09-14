@@ -6,6 +6,7 @@ describe Nomination do
   it { should have_one(:team).through(:nominee_membership) }
   it { should belong_to(:nominator).class_name("User") }
   it { should have_many(:votes).dependent(:destroy) }
+  it { should have_many(:voters).through(:votes).source(:voter) }
 
   it { should have_valid(:nominee_membership).when(TeamMembership.new) }
   it { should_not have_valid(:nominee_membership).when(nil) }
