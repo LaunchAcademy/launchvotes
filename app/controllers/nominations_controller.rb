@@ -1,6 +1,6 @@
 class NominationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :get_team
+  before_action :get_team, only: [:index, :create]
   before_action :get_nomination, only: [:edit, :update, :destroy]
   before_action :authorize_user!, only: [:index, :edit, :update, :destroy]
 
@@ -9,7 +9,8 @@ class NominationsController < ApplicationController
   end
 
   def edit
-    @nominee_options = @team.memberships.all_except(current_user).select_options
+    @nominee_options = @nomination.
+      team.memberships.all_except(current_user).select_options
   end
 
   def create
@@ -20,7 +21,8 @@ class NominationsController < ApplicationController
       redirect_to team_path(@team)
     else
       flash[:alert] = "Nomination Not Created."
-      @nominee_options = @team.memberships.all_except(current_user).select_options
+      @nominee_options = @team.
+        memberships.all_except(current_user).select_options
       @nominations = @team.nominations.current_week.visible_to(current_user)
       render :'teams/show'
     end
@@ -29,10 +31,11 @@ class NominationsController < ApplicationController
   def update
     if @nomination.update(nomination_params)
       flash[:notice] = "Nomination Updated!"
-      redirect_to team_path(@team)
+      redirect_to team_path(@nomination.team)
     else
       flash[:alert] = "Nomination Not Updated."
-      @nominee_options = @team.memberships.all_except(current_user).select_options
+      @nominee_options = @nomination.
+        team.memberships.all_except(current_user).select_options
       render :edit
     end
   end
@@ -40,7 +43,7 @@ class NominationsController < ApplicationController
   def destroy
     @nomination.destroy
     flash[:notice] = "Nomination Deleted!"
-    redirect_to team_path(@team)
+    redirect_to team_path(@nomination.team)
   end
 
   private
@@ -56,7 +59,7 @@ class NominationsController < ApplicationController
   def authorize_user!
     unless user_authorized?
       flash[:alert] = "You Are Not Authorized To View The Page"
-      redirect_to team_path(@team)
+      redirect_to after_sign_in_path_for(current_user)
     end
   end
 

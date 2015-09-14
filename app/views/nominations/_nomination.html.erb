@@ -2,8 +2,10 @@
   <%= nomination.nominee.image %>
   <%= nomination.nominee.name %>
   <%= nomination.body %>
-  <%= link_to "Edit", edit_team_nomination_path(@team, nomination) %>
-  <%= link_to "Delete", team_nomination_path(@team, nomination), method: :delete %>
+  <% if nomination.nominator == current_user || current_user.admin? %>
+    <%= link_to "Edit", edit_nomination_path(nomination) %>
+    <%= link_to "Delete", nomination_path(nomination), method: :delete %>
+  <% end %>
   <% if nomination.voters.include?(current_user) %>
     <%= link_to "Voted!", nomination_vote_path(nomination, nomination.votes.find_by(voter: current_user)), method: :delete %>
   <% else %>

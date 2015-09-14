@@ -28,7 +28,7 @@ feature 'nomination update', %{
 
   scenario "form is submitted with invalid information" do
     sign_in_as(user)
-    visit edit_team_nomination_path(team, nomination)
+    visit edit_nomination_path(nomination)
     fill_in "nomination_body", with: ""
     click_button "Submit"
 
@@ -37,7 +37,7 @@ feature 'nomination update', %{
 
   scenario "unauthorized user cannot see page" do
     sign_in_as(another_user)
-    visit edit_team_nomination_path(team, nomination)
+    visit edit_nomination_path(nomination)
 
     expect(page).
       to have_content("You Are Not Authorized To View The Page")

@@ -4,6 +4,7 @@ describe User do
   it { should have_many(:team_memberships).dependent(:destroy) }
   it { should have_many(:teams).through(:team_memberships) }
   it { should have_many(:votes).with_foreign_key("voter_id").dependent(:destroy) }
+  it { should have_many(:nominations).through(:team_memberships) }
 
   it { should have_valid(:provider).when("github") }
   it { should_not have_valid(:provider).when(nil, "", "facebook") }
