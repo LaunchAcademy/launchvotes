@@ -2,7 +2,7 @@ module Admin
   class TeamMembershipsController < AdminController
     def create
       @team = Team.find(params[:team_id])
-      @team_membership = @team.team_memberships.new(team_membership_params)
+      @team_membership = @team.memberships.new(team_membership_params)
       @team_membership.save
       flash[:notice] = "Team Membership Created!"
       redirect_to admin_team_path(@team)

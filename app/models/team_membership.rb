@@ -5,7 +5,8 @@ class TeamMembership < ActiveRecord::Base
     foreign_key: "nominee_membership_id",
     dependent: :destroy
 
-  scope :without, -> (user) { where.not(user: user) }
+  scope :all_except, -> (user) { where.not(user: user) }
+  scope :select_options, -> { joins(:user).pluck(:name, :id) }
 
   validates :user, presence: true, uniqueness: { scope: :team }
   validates :team, presence: true, uniqueness: { scope: :user }
