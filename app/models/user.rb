@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships
+  has_many :votes, foreign_key: "voter_id", dependent: :destroy
 
   validates :provider, presence: true, inclusion: { in: ["github"] }
   validates :uid, presence: true
