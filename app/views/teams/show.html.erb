@@ -1,5 +1,9 @@
 <%= render "nominations/form" %>
 
+<% if current_user.admin? %>
+  <%= link_to "Awards", team_nominations_path(@team) %></li>
+<% end %>
+
 <ul class="nominations">
   <%= render @nominations %>
 </ul>

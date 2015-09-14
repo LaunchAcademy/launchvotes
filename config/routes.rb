@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: [:show] do
-    resources :nominations, only: [:edit, :create, :update, :destroy]
+    resources :nominations, only: [:index, :edit, :create, :update, :destroy]
   end
 
   resources :nominations, only: :none do
