@@ -4,6 +4,7 @@ class Nomination < ActiveRecord::Base
   has_one :team, through: :nominee_membership
   belongs_to :nominator, class_name: "User"
   has_many :votes, dependent: :destroy
+  has_many :voters, through: :votes, source: :voter
 
   scope :current_week,
     -> { where("nominations.created_at > ?", Time.current.beginning_of_week) }

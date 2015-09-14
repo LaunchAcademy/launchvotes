@@ -33,4 +33,9 @@ FactoryGirl.define do
     association :nominator, factory: :user
     sequence(:body) { |n| "Best Beard #{n}" }
   end
+
+  factory :vote do
+    nomination
+    association :voter, factory: :user
+  end
 end

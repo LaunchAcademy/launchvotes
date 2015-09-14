@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :nominations, only: [:edit, :create, :update, :destroy]
   end
 
-  resources :nominations, only: [] do
-    resources :votes, only: [:create]
+  resources :nominations, only: :none do
+    resources :votes, only: [:create, :destroy]
   end
 
   namespace :admin do

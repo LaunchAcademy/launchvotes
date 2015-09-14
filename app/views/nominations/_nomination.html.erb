@@ -4,5 +4,9 @@
   <%= nomination.body %>
   <%= link_to "Edit", edit_team_nomination_path(@team, nomination) %>
   <%= link_to "Delete", team_nomination_path(@team, nomination), method: :delete %>
-  <%= link_to "Vote!", nomination_votes_path(nomination), method: :post %>
+  <% if nomination.voters.include?(current_user) %>
+    <%= link_to "Voted!", nomination_vote_path(nomination, nomination.votes.find_by(voter: current_user)), method: :delete %>
+  <% else %>
+    <%= link_to "Vote", nomination_votes_path(nomination), method: :post %>
+  <% end %>
 </li>
