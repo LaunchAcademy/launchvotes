@@ -3,4 +3,5 @@
   <%= nomination.nominee.name %>
   <%= nomination.body %>
   <%= link_to "Edit", edit_team_nomination_path(@team, nomination) %>
+  <%= link_to "Delete", team_nomination_path(@team, nomination), method: :delete %>
 </li>

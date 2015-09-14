@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: [:show] do
-    resources :nominations, only: [:create, :edit, :update]
+    resources :nominations, only: [:edit, :create, :update, :destroy]
   end
 
   namespace :admin do
