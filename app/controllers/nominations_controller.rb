@@ -1,12 +1,14 @@
 class NominationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_team
+  before_action :get_nomination, only: [:edit, :update]
+  before_action :authorize_user!, only: [:edit, :update]
 
-  def index
-    @nominees = User.nominees(current_user)
+  def edit
+    @nominee_options = @team.memberships.all_except(current_user).select_options
   end
 
   def create
-    @team = Team.find(params[:team_id])
     @nomination = Nomination.new(nomination_params)
     @nomination.nominator = current_user
     if @nomination.save
@@ -20,7 +22,33 @@ class NominationsController < ApplicationController
     end
   end
 
+  def update
+    if @nomination.update(nomination_params)
+      flash[:notice] = "Nomination Updated!"
+      redirect_to team_path(@team)
+    else
+      flash[:alert] = "Nomination Not Updated."
+      @nominee_options = @team.memberships.all_except(current_user).select_options
+      render :edit
+    end
+  end
+
   private
+
+  def get_team
+    @team = Team.find(params[:team_id])
+  end
+
+  def get_nomination
+    @nomination = Nomination.find(params[:id])
+  end
+
+  def authorize_user!
+    unless current_user.admin? || current_user == @nomination.nominator
+      flash[:alert] = "You Are Not Authorized To View The Page"
+      redirect_to team_path(@team)
+    end
+  end
 
   def nomination_params
     params.require(:nomination).permit(:nominee_membership_id, :body)
