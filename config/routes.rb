@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :nominations, only: [:edit, :create, :update, :destroy]
   end
 
+  resources :nominations, only: [] do
+    resources :votes, only: [:create]
+  end
+
   namespace :admin do
     resources :teams do
       resources :team_memberships, only: [:create], as: :memberships

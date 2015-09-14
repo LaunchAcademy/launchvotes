@@ -3,6 +3,7 @@ class Nomination < ActiveRecord::Base
   has_one :nominee, through: :nominee_membership, source: :user
   has_one :team, through: :nominee_membership
   belongs_to :nominator, class_name: "User"
+  has_many :votes, dependent: :destroy
 
   scope :current_week,
     -> { where("nominations.created_at > ?", Time.current.beginning_of_week) }
