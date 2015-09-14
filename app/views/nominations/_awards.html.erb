@@ -1,0 +1,8 @@
+<% @nominations.each do |nomination| %>
+  <li id="nomination-<%= nomination.id %>">
+    <%= nomination.nominee.image %>
+    <%= nomination.nominee.name %>
+    <%= nomination.body %>
+    <%= nomination.votes.count %>
+  </li>
+<% end %>

@@ -17,6 +17,7 @@
       <section class="top-bar-section">
         <ul class="right">
           <%- if current_user -%>
+            <li><%= link_to "Your Profile", user_path(current_user) %></li>
             <% if current_user.admin? %>
               <li><%= link_to "Teams", admin_teams_path %></li>
             <% end %>

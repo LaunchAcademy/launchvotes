@@ -22,6 +22,15 @@ describe Nomination do
     end
   end
 
+  describe ".previous_weeks" do
+    let!(:last_week_nomination) { create(:nomination, created_at: 1.week.ago) }
+    let!(:current_week_nomination) { create(:nomination) }
+    it "should return nominations created before the beginning of the week" do
+      expect(Nomination.previous_weeks).to include(last_week_nomination)
+      expect(Nomination.previous_weeks).to_not include(current_week_nomination)
+    end
+  end
+
   describe ".visible_to" do
     let(:team) { create(:team) }
     let(:user) { create(:user) }

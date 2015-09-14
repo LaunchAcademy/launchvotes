@@ -8,6 +8,8 @@ class Nomination < ActiveRecord::Base
 
   scope :current_week,
     -> { where("nominations.created_at > ?", Time.current.beginning_of_week) }
+  scope :previous_weeks,
+    -> { where("nominations.created_at < ?", Time.current.beginning_of_week) }
   scope :visible_to, -> (user) {
     unless user.admin?
       joins(:nominee_membership).merge(TeamMembership.all_except(user))
