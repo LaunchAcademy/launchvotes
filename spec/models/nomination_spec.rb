@@ -45,4 +45,14 @@ describe Nomination do
         to include(nomination, another_nomination)
     end
   end
+
+  describe ".awards" do
+    let(:vote) { create(:vote) }
+    let!(:nomination_with_vote) { vote.nomination }
+    let!(:nomination_without_vote) { create(:nomination) }
+    it "should show Nominations with at least one vote" do
+      expect(Nomination.awards).to include(nomination_with_vote)
+      expect(Nomination.awards).to_not include(nomination_without_vote)
+    end
+  end
 end

@@ -2,7 +2,11 @@ class NominationsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_team
   before_action :get_nomination, only: [:edit, :update, :destroy]
-  before_action :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :authorize_user!, only: [:index, :edit, :update, :destroy]
+
+  def index
+    @nominations = @team.nominations.current_week.awards
+  end
 
   def edit
     @nominee_options = @team.memberships.all_except(current_user).select_options
@@ -50,10 +54,15 @@ class NominationsController < ApplicationController
   end
 
   def authorize_user!
-    unless current_user.admin? || current_user == @nomination.nominator
+    unless user_authorized?
       flash[:alert] = "You Are Not Authorized To View The Page"
       redirect_to team_path(@team)
     end
+  end
+
+  def user_authorized?
+    current_user.admin? ||
+      (@nomination && @nomination.nominator == current_user)
   end
 
   def nomination_params
