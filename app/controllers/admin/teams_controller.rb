@@ -40,11 +40,8 @@ module Admin
     end
 
     def destroy
-      if @team.destroy
-        flash[:notice] = "Team Destroyed!"
-      else
-        flash[:alert] = "Team Not Destroyed. You Cannot Destroy An Enrolling Team"
-      end
+      @team.destroy
+      flash[:notice] = "Team Destroyed!"
       redirect_to admin_teams_path
     end
 

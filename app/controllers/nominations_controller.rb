@@ -1,8 +1,8 @@
 class NominationsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_team
-  before_action :get_nomination, only: [:edit, :update]
-  before_action :authorize_user!, only: [:edit, :update]
+  before_action :get_nomination, only: [:edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def edit
     @nominee_options = @team.memberships.all_except(current_user).select_options
@@ -31,6 +31,12 @@ class NominationsController < ApplicationController
       @nominee_options = @team.memberships.all_except(current_user).select_options
       render :edit
     end
+  end
+
+  def destroy
+    @nomination.destroy
+    flash[:notice] = "Nomination Deleted!"
+    redirect_to team_path(@team)
   end
 
   private
