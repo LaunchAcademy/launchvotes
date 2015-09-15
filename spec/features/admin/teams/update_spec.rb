@@ -1,6 +1,16 @@
 require "rails_helper"
 
 feature 'admin updates a team', %{
+  As an admin,
+  I want to update a team
+  So I can fix erroneous information
+
+  Acceptance Criteria
+  [x] Clicking on "Edit Team" on the team show page should take the admin to a form that updates the team
+  [x] Filling in invalid information does not update the team
+  [x] Enrolling teams cannot be made unenrolling
+  [x] Nonadmin users should get a 404 error when attempting to view the page
+  [x] Unauthenticated users should also get a 404 error when attemption to view the page
 } do
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }

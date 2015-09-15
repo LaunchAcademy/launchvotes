@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature 'admin creates a team membership', %{
+  As an admin,
+  I want to create a team membership,
+  So users can be part of multiple teams
+
+  Acceptance Criteria
+  [x] I must be able to create a membership from the admin team show page
+  [x] If all users belong to the team, then no form is displayed
 } do
   let(:admin) { create(:admin_user) }
   let(:team) { create(:team) }

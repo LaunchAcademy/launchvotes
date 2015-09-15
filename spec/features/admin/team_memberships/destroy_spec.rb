@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature 'admin destroys a team membership', %{
+  As an admin,
+  I want to destroy team memberships,
+  So I can remove users from teams
+
+  Acceptance Criteria
+  [x] I must be able to destroy a team membership from the admin team show page
+  [x] If a user only has one team, an admin should not be able to remove him from the team
 } do
   let(:admin) { create(:admin_user) }
   let!(:team_memberships) do
@@ -21,7 +28,7 @@ feature 'admin destroys a team membership', %{
     end
   end
 
-  scenario "users must belong to at least one team" do
+  scenario "user must belong to at least one team" do
     sign_in_as(admin)
     visit admin_team_path(team_1)
     click_link "Remove From Team"

@@ -1,6 +1,12 @@
 require "rails_helper"
 
 feature 'votes create', %{
+  As a user,
+  I should be able to vote on a nomination,
+  So I can show my support for it
+
+  Acceptance Criteria
+  [x] User should be able to click "Vote" on a nomination from the team show page
 } do
   let(:team) { create(:team) }
   let(:team_memberships) { create_list(:team_membership, 2, team: team) }

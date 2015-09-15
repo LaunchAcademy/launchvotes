@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature 'user creates a nomination', %{
+  As a user,
+  I want to create a nomination,
+  So I nominate my peers for their accomplishments
+
+  Acceptance Criteria
+  [x] Users should be able to create nominations from the team show page
+  [x] Nominations should not be created if no body was entered
 } do
   let(:user) { create(:user) }
   let(:team_membership) { create(:team_membership, team: Team.enrolling.first) }

@@ -1,6 +1,15 @@
 require "rails_helper"
 
 feature 'admin creates a team', %{
+  As an admin,
+  I want to create a team,
+  So new students can join the team
+
+  Acceptance Criteria
+  [x] Clicking on "Create Team" in the team index page takes the admin to a form where they can create a new team
+  [x] Filling in invalid information does not create a team
+  [x] Nonadmin users should get a 404 error when attempting to view the page
+  [x] Unauthenticated users should also get a 404 error when attemption to view the page
 } do
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }

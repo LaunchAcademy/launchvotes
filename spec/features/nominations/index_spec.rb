@@ -1,6 +1,14 @@
 require "rails_helper"
 
 feature 'user sees awards page', %{
+  As an admin,
+  I want to see the teams nominations index,
+  So I can see the awards for the week
+
+  Acceptance Criteria
+  [x] An admin should be able to click "Awards" to see the enrolling team's awards
+  [x] Unauthorized users should be redirected to their team show page
+  [x] Unauthenticated users should be redirected to the sign in page
 } do
   let(:team) { create(:enrolling_team) }
   let(:team_membership) { create(:team_membership, team: team) }

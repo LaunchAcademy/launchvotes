@@ -1,6 +1,15 @@
 require "rails_helper"
 
 feature 'nomination update', %{
+  As a user,
+  I want to update a nomination,
+  So I can fix any mistakes
+
+  Acceptance Criteria
+  [x] I should be able to edit my own nominations from the team show page
+  [x] Nominations should not be updated if no body is supplied
+  [x] Other users should not be able nominations which they did not submit
+  [x] Unauthenticated users should not be able to update nominations
 } do
   let(:team) { create(:team) }
   let(:team_memberships) { create_list(:team_membership, 2, team: team) }

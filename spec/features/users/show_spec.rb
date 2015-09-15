@@ -1,6 +1,14 @@
 require "rails_helper"
 
 feature 'user show', %{
+  As I user,
+  I want to see my own profile,
+  So I can see all the awards I've received
+
+  Acceptance Criteria
+  [x] User clicking on "Your Profile" should show a page with previous awards
+  [x] Unauthorized user should be redirected to their team show page if they try to view the page
+  [x] Unauthenticated user should be redirected to sign in page if they try to view the page
 } do
   let(:team) { create(:enrolling_team) }
   let(:team_membership) { create(:team_membership, team: team) }
