@@ -1,6 +1,14 @@
 require "rails_helper"
 
 feature 'admin sees list of teams', %{
+  As an admin,
+  I want to view all the teams,
+  So I know what teams exist
+
+  Acceptance Criteria
+  [x] Admin clicking on the "Teams" link should be taken to the teams index page.
+  [x] Nonadmin users should get a 404 error when attempting to view the page
+  [x] Unauthenticated users should also get a 404 error when attemption to view the page
 } do
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }

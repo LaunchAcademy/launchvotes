@@ -1,9 +1,18 @@
 require "rails_helper"
 
 feature 'user signs in', %{
-  As a signed up user
-  I want to sign in
-  So that I can regain access to my account
+  As a user,
+  I want to to authenticate,
+  So I can identify myself
+
+  Acceptance Criteria
+  [x] User must be authenticated via Github OAuth
+  [x] A new user must join the currently enrolling team
+  [x] User must not be authenticated if Github returns invalid user credentials
+  [x] User must not be authenticated if Github fails to authenticate
+  [x] Existing user must be able to sign in
+  [x] Existing user must be able to sign out
+  [x] User credentials are updated if Github returns updated credentials
 } do
 
   context "new user" do

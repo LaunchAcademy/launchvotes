@@ -1,6 +1,12 @@
 require "rails_helper"
 
 feature 'vote destroy', %{
+  As a User,
+  I should be able to retract a vote,
+  So I can remove votes I accidentally cast
+
+  Acceptance Criteria
+  [x] A voter should be able to click "Voted!" on a nomination which they voted on to retract a vote
 } do
   let(:team) { create(:team) }
   let(:team_memberships) { create_list(:team_membership, 2, team: team) }

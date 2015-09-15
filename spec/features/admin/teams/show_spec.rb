@@ -1,6 +1,14 @@
 require "rails_helper"
 
 feature 'admin sees admin team show page', %{
+  As an admin,
+  I want to see the team show page
+  So I can learn more about each team
+
+  Acceptance Criteria
+  [x] Admin clicking on a team name in the teams index should be taken to the team show page
+  [x] Nonadmin users should get a 404 error when attempting to view the page
+  [x] Unauthenticated users should also get a 404 error when attemption to view the page
 } do
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }

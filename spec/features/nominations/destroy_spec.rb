@@ -1,6 +1,12 @@
 require "rails_helper"
 
 feature 'nomination destroy', %{
+  As a user,
+  I want to destroy a nomination,
+  So I can remove accidentally created nominations
+
+  Acceptance Criteria
+  [x] Nominator should be able to delete nomination
 } do
   let(:team) { create(:team) }
   let(:team_memberships) { create_list(:team_membership, 2, team: team) }

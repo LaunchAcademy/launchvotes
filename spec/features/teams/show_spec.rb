@@ -1,6 +1,14 @@
 require "rails_helper"
 
 feature 'user sees team show page', %{
+  As a user,
+  I want to see my team's show page,
+  So I can see who has been nominated
+
+  Acceptance Criteria
+  [x] non-admin users see all nominations for this week except my own
+  [x] admin users see all nominations
+  [x] unauthenticated users are redirected to the sign in page if they try to visit the page
 } do
   let(:team) { create(:enrolling_team) }
   let(:team_membership) { create(:team_membership, team: team) }
@@ -25,7 +33,7 @@ feature 'user sees team show page', %{
 
   context "authenticated admin user" do
     let!(:admin) { create(:admin_user) }
-    scenario "sees team show page without his own nominations" do
+    scenario "sees all nominations" do
       sign_in_as(admin)
 
       within ".nominations" do

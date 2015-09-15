@@ -1,13 +1,22 @@
 require "rails_helper"
 
 feature 'admin makes a team enrolling', %{
+  As an admin,
+  I want to ensure that there is no more than one enrolling team,
+  So I know exactly which team new users automatically join
+
+  Acceptance Criteria
+  [x] Creating an enrolling team must make the previously enrolling team non-enrolling
+  [x] Updating a team to enrolling must make the previously enrolling team non-enrolling
+  [x] Creating a non-enrolling team does not change the enrolling status of the enrolling team
+  [x] Updating a non-enrolling team does not change the enrolling status of the enrolling team
 } do
   let(:admin) { create(:admin_user) }
   let(:created_team) { build(:team) }
   let(:updated_team) { create(:team) }
   let!(:previous_enrolling_team) { create(:enrolling_team) }
 
-  scenario "signed in admin creates team" do
+  scenario "signed in admin creates enrolling team" do
     sign_in_as(admin)
     visit new_admin_team_path
     fill_in "Name", with: created_team.name
@@ -20,7 +29,7 @@ feature 'admin makes a team enrolling', %{
     expect(previous_enrolling_team.reload.enrolling).to eq(false)
   end
 
-  scenario "signed in admin updates team" do
+  scenario "admin updates a team to enrolling" do
     sign_in_as(admin)
     visit admin_team_path(updated_team)
     click_link "Edit Team"
@@ -34,7 +43,7 @@ feature 'admin makes a team enrolling', %{
     expect(updated_team.reload.enrolling).to eq(true)
   end
 
-  scenario "creating non-enrolling teams" do
+  scenario "admin creates non-enrolling teams" do
     sign_in_as(admin)
     visit new_admin_team_path
     fill_in "Name", with: created_team.name
@@ -44,7 +53,7 @@ feature 'admin makes a team enrolling', %{
     expect(previous_enrolling_team.reload.enrolling).to eq(true)
   end
 
-  scenario "updating non-enrolling teams" do
+  scenario "admin updates a non-enrolling teams" do
     sign_in_as(admin)
     visit edit_admin_team_path(updated_team)
     fill_in "Name", with: "New England Patriots 4 Life"
