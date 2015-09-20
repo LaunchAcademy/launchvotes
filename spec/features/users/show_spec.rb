@@ -37,7 +37,9 @@ feature 'user show', %{
   context "authenticated and authorized user" do
     scenario "sees their own profile and awards from previous weeks" do
       sign_in_as(user)
-      click_link "Your Profile"
+      within ".top-bar" do
+        click_link "Your Profile"
+      end
 
       within ".nominations" do
         expect(page).to have_content(old_nomination.body)

@@ -1,9 +1,13 @@
-<%= render "nominations/form" %>
+<div class="row">
+  <div class="large-12 columns">
+    <%= render "nominations/form" %>
 
-<% if current_user.admin? %>
-  <%= link_to "Awards", team_nominations_path(@team) %></li>
-<% end %>
+    <% if current_user.admin? %>
+      <%= link_to "Awards", team_nominations_path(@team) %>
+    <% end %>
 
-<ul class="nominations">
-  <%= render @nominations %>
-</ul>
+    <ul class="nominations">
+      <%= render @nominations %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<nav class="tab-bar show-for-small">
+  <section class="left tab-bar-section">
+    <%= render "layouts/logo" %>
+  </section>
+
+  <section class="right-small">
+    <% if current_user %>
+      <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+    <% end %>
+  </section>
+</nav>
+
+<aside class="right-off-canvas-menu">
+  <ul class="off-canvas-list">
+    <% if current_user %>
+      <li>
+        <label>
+          <%= image_tag current_user.image, class: "image-topbar-mobile" %>
+          <span><%= current_user.name %></span>
+        </label>
+      </li>
+      <%= render "layouts/navigation_links" %>
+    <% end %>
+  </ul>
+</aside>
+
+<a class="exit-off-canvas"></a>

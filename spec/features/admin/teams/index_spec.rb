@@ -16,7 +16,9 @@ feature 'admin sees list of teams', %{
 
   scenario "signed in admin sees all teams" do
     sign_in_as(admin)
-    click_link "Teams"
+    within ".top-bar" do
+      click_link "Teams"
+    end
 
     expect(page).to have_content(team.name)
   end

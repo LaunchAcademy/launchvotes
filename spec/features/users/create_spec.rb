@@ -67,7 +67,9 @@ feature 'user signs in', %{
 
     scenario "sign out" do
       sign_in_as(user)
-      click_link "Sign Out"
+      within ".top-bar" do
+        click_link "Sign Out"
+      end
       expect(page).to have_content("Signed out successfully.")
     end
 
