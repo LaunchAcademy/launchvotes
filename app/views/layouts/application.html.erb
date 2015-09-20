@@ -3,39 +3,27 @@
   <head>
     <title>Launchvotes</title>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+        <%= render "layouts/top_bar" %>
+        <%= render "layouts/top_bar_mobile" %>
 
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">Launchvotes</a></h1>
-        </li>
-      </ul>
-
-      <section class="top-bar-section">
-        <ul class="right">
-          <%- if current_user -%>
-            <li><%= link_to "Your Profile", user_path(current_user) %></li>
-            <% if current_user.admin? %>
-              <li><%= link_to "Teams", admin_teams_path %></li>
-            <% end %>
-            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <%- end -%>
-        </ul>
-      </section>
-    </nav>
-
-    <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
+        <section class="main-section">
+          <div class="row">
+            <div class="columns large-12">
+              <%= render "layouts/flash" %>
+              <%= yield %>
+              <%= yield :extra_footer %>
+            </div>
+          </div>
+        </section>
       </div>
-    <%- end -%>
-
-    <%= yield %>
-
-    <%= javascript_include_tag 'application' %>
-    <%= yield :extra_footer %>
+    </div>
   </body>
 </html>

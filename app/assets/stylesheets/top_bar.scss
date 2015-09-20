@@ -1,0 +1,67 @@
+@import "colors";
+$topbar-height: 4rem;
+
+nav.top-bar,
+nav.tab-bar,
+.contain-to-grid {
+  background: $dark-blue;
+  height: $topbar-height;
+
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    background: $dark-blue;
+  }
+
+  .top-bar-section .dropdown li:not(.has-form):not(.active) {
+    & > a:not(.button) {
+      background: $pink;
+    }
+
+    & > a:not(.button):hover {
+      background: darken($pink, 10%);
+    }
+
+    &:not(:last-child) a {
+      border-bottom: 0.1rem solid $white;
+    }
+  }
+
+
+  .top-bar-section .has-dropdown > a {
+    line-height: 3.7rem;
+    &:after {
+      margin-top: 0.3rem;
+    }
+  }
+
+  h1.logo {
+    margin-top: 0.3rem;
+  }
+
+  .logo span {
+    color: $white;
+    font-size: 1.7rem;
+  }
+
+  .logo img {
+    width: 3.4rem;
+    height: 3.1rem;
+  }
+
+  ul {
+    background: $dark-blue;
+  }
+
+  li.has-dropdown > a {
+    height: $topbar-height;
+  }
+
+  .right-small {
+    border-left: none;
+  }
+
+  a.right-off-canvas-toggle.menu-icon {
+    margin-top:0.5rem;
+  }
+}
+
+
