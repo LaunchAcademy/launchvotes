@@ -1,0 +1,25 @@
+@import "colors";
+
+.button-white {
+  @extend .button;
+  background-color: $white;
+  color: $dark-blue;
+
+  &:hover,
+  &:focus {
+    background-color: $white;
+    color: $dark-blue;
+  }
+}
+
+.button-pink {
+  @extend .button;
+  background-color: $pink;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background-color: $pink;
+    color: $white;
+  }
+}

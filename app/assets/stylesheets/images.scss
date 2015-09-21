@@ -1,15 +1,24 @@
+@import "colors";
+
+.image-nomination {
+  border: 0.2rem solid $white;
+  border-radius: 4rem;
+  height: 8rem;
+  width: 8rem;
+}
+
 .image-topbar {
   margin-right: 0.2rem;
+  border: 0.1rem solid $white;
   border-radius: 2rem;
-  border: 0.05rem solid white;
   height: 2.3rem;
   width: 2.3rem;
 }
 
 .image-topbar-mobile {
   margin-right: 0.2rem;
+  border: 0.1rem solid $white;
   border-radius: 2rem;
-  border: 0.05rem solid white;
   height: 1.6rem;
   width: 1.6rem;
 }
