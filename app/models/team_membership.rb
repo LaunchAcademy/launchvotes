@@ -6,7 +6,8 @@ class TeamMembership < ActiveRecord::Base
     dependent: :destroy
 
   scope :all_except, -> (user) { where.not(user: user) }
-  scope :select_options, -> { joins(:user).pluck(:name, :id) }
+  scope :select_options,
+    -> { joins(:user).order("users.name").pluck(:name, :id) }
 
   validates :user, presence: true, uniqueness: { scope: :team }
   validates :team, presence: true, uniqueness: { scope: :user }

@@ -1,13 +1,19 @@
 <div class="row">
   <div class="large-12 columns">
+
     <%= render "nominations/form" %>
 
-    <% if current_user.admin? %>
-      <%= link_to "Awards", team_nominations_path(@team) %>
-    <% end %>
+    <div class="row">
+      <div class="nomination-top-section text-center small-12 columns">
+        <h2>Nominations for <%= @team.name %></h2>
+        <% if current_user.admin? %>
+          <%= link_to "See Awards", team_nominations_path(@team), class: "button-pink radius" %>
+        <% end %>
+      </div>
+    </div>
 
-    <ul class="nominations">
+    <div class="nominations row">
       <%= render @nominations %>
-    </ul>
+    </div>
   </div>
 </div>

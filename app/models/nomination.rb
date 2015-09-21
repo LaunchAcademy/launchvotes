@@ -1,4 +1,14 @@
 class Nomination < ActiveRecord::Base
+  PLACEHOLDERS = [
+    "Most glorious beard",
+    "Best flow",
+    "Most help requests",
+    "Fastest typer",
+    "Best spectacles",
+    "Best accent",
+    "Most likely to `git push origin master -f`",
+    "Breakable toy is funded on Kickstarter"
+  ]
   belongs_to :nominee_membership, class_name: "TeamMembership"
   has_one :nominee, through: :nominee_membership, source: :user
   has_one :team, through: :nominee_membership

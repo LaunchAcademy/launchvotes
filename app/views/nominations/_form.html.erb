@@ -1,7 +1,18 @@
-<%= form_for [@team, @nomination] do |f| %>
-  <%= f.select :nominee_membership_id, options_for_select(@nominee_options) %>
+<div class="row">
+  <div class="nomination-form large-6 large-offset-3 medium-8 medium-offset-2 small-12 columns">
 
-  <%= f.text_field :body %>
+    <div class="row">
+      <div class="small-8 small-offset-2">
+        <h3 class="text-center">Nominate A Fellow Launcher:</h3>
+        <%= form_for [@team, @nomination], html: { class: "nomination-form"} do |f| %>
+          <%= f.select :nominee_membership_id, options_for_select(@nominee_options)  %>
 
-  <%= f.submit "Submit" %>
-<% end %>
+          <%= f.text_field :body, placeholder: Nomination::PLACEHOLDERS.sample %>
+
+          <%= f.submit "Submit", class: "button-white expand small" %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
