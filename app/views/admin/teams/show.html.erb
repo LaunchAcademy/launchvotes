@@ -1,24 +1,21 @@
-<h1><%= @team.name %></h1>
-<%= link_to "Edit Team", edit_admin_team_path(@team) %>
+<div class="row text-center">
+  <div class= "small-12 columns">
+    <h1><%= @team.name %> <%= "(Enrolling)" if @team.enrolling?%></h1>
+    <ul class="button-group radius even-2 medium-6 medium-offset-3 small-12">
+      <% if @team.enrolling? %>
+        <li><%= link_to "Edit Team", edit_admin_team_path(@team), class: "button-pink small radius" %></li>
+      <% else %>
+        <li><%= link_to "Destroy Team", admin_team_path(@team), method: :delete, class: "button-pink small" %></li>
+        <li><%= link_to "Edit Team", edit_admin_team_path(@team), class: "button-pink small" %></li>
+      <% end %>
+    </ul>
 
-<% if @team.enrolling? %>
-  <p>Currently Enrolling</p>
-<% else %>
-  <%= link_to "Destroy Team", admin_team_path(@team), method: :delete %>
-<% end %>
+    <% unless User.nonmembers(@team).blank? %>
+      <%= render "admin/team_memberships/form" %>
+    <% end %>
 
-<%= link_to "See All Teams", admin_teams_path %>
+    <%= render "admin/team_memberships/list" %>
 
-<% unless User.nonmembers(@team).blank? %>
-  <%= render "admin/team_memberships/form" %>
-<% end %>
-
-<ul class="team_memberships">
-  <% @team.users.each do |user| %>
-    <li>
-      <%= user.name %>
-      <%= link_to "Remove From Team", admin_team_membership_path(
-        TeamMembership.find_by(user: user, team: @team)), method: :delete %>
-  </li>
-<% end %>
-</ul>
+    <%= link_to "See All Teams", admin_teams_path, class: "button-pink" %>
+  </div>
+</div>

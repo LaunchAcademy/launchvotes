@@ -24,7 +24,7 @@ feature 'admin makes a team enrolling', %{
     click_button "Create Team"
 
     expect(page).to have_content(created_team.name)
-    expect(page).to have_content("Currently Enrolling")
+    expect(page).to have_content("(Enrolling)")
     expect(Team.enrolling.count).to eq(1)
     expect(previous_enrolling_team.reload.enrolling).to eq(false)
   end
@@ -37,7 +37,7 @@ feature 'admin makes a team enrolling', %{
     click_button "Update Team"
 
     expect(page).to have_content(updated_team.name)
-    expect(page).to have_content("Currently Enrolling")
+    expect(page).to have_content("(Enrolling)")
     expect(Team.enrolling.count).to eq(1)
     expect(previous_enrolling_team.reload.enrolling).to eq(false)
     expect(updated_team.reload.enrolling).to eq(true)

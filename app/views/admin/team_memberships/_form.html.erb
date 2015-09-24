@@ -1,6 +1,10 @@
-<%= form_for @team_membership, url: admin_team_memberships_path(@team) do |f| %>
-  <%= f.label :user_id %>
-  <%= f.select :user_id, options_for_select(User.nonmembers(@team).pluck(:name, :id)) %>
+<div class="row">
+  <div class="form-wrapper large-6 large-offset-3 medium-8 medium-offset-2 small-12 columns">
+    <h3 class="text-center">Add A Member To The Team</h3>
+    <%= form_for @team_membership, url: admin_team_memberships_path(@team) do |f| %>
+      <%= f.select :user_id, options_for_select(User.nonmembers(@team).pluck(:name, :id)) %>
 
-  <%= f.submit "Add To Team" %>
-<% end %>
+      <%= f.submit "Add To Team", class: "button-hollow-white expand small" %>
+    <% end %>
+  </div>
+</div>
