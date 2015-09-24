@@ -1,8 +1,14 @@
 <% @nominations.each do |nomination| %>
-  <li id="nomination-<%= nomination.id %>">
-    <%= nomination.nominee.image %>
-    <%= nomination.nominee.name %>
-    <%= nomination.body %>
-    <%= nomination.votes.count %>
-  </li>
+  <div class="nomination text-center medium-3 small-12 columns" id="nomination-<%= nomination.id %>">
+    <div class="ribbon">
+      <%= image_tag "pink_ribbon.png" %>
+      <span class="vote-count"><%= nomination.votes.count %></span>
+    </div>
+
+    <div class="nomination-content">
+      <%= image_tag nomination.nominee.image, class: "image-nomination" %>
+      <h5><%= nomination.nominee.name %></h5>
+      <h6><%= nomination.body %></h6>
+    </div>
+  </div>
 <% end %>

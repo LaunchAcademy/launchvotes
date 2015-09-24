@@ -1,10 +1,8 @@
 <div class="row">
-  <div class="large-12 columns">
-    <% flash.each do |key, value| %>
-      <div data-alert class="alert-box flash flash-<%= key %>">
-        <%= value %>
-        <a href="#" class="close">&times;</a>
-      </div>
-    <% end %>
-  </div>
+  <% flash.each do |key, value| %>
+    <div data-alert class="alert-box flash flash-<%= key %>">
+      <%= value %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
 </div>
