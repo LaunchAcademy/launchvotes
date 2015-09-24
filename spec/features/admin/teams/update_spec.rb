@@ -21,7 +21,7 @@ feature 'admin updates a team', %{
     sign_in_as(admin)
     visit admin_team_path(enrolling_team)
     click_link "Edit Team"
-    fill_in "Name", with: "Admin Overlords"
+    fill_in "team_name", with: "Admin Overlords"
     click_button "Update Team"
 
     expect(page).to have_content("Team Updated!")
@@ -32,7 +32,7 @@ feature 'admin updates a team', %{
     sign_in_as(admin)
     visit admin_team_path(team)
     click_link "Edit Team"
-    fill_in "Name", with: ""
+    fill_in "team_name", with: ""
     check "Enrolling"
     click_button "Update Team"
 

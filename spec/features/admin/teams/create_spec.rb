@@ -19,7 +19,7 @@ feature 'admin creates a team', %{
     sign_in_as(admin)
     visit admin_teams_path
     click_link "Create Team"
-    fill_in "Name", with: team.name
+    fill_in "team_name", with: team.name
     check "Enrolling"
     click_button "Create Team"
 
@@ -31,7 +31,7 @@ feature 'admin creates a team', %{
   scenario "signed in admin fills in invalid information" do
     sign_in_as(admin)
     visit new_admin_team_path
-    fill_in "Name", with: ""
+    fill_in "team_name", with: ""
     check "Enrolling"
     click_button "Create Team"
 

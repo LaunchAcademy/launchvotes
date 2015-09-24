@@ -19,7 +19,7 @@ feature 'admin makes a team enrolling', %{
   scenario "signed in admin creates enrolling team" do
     sign_in_as(admin)
     visit new_admin_team_path
-    fill_in "Name", with: created_team.name
+    fill_in "team_name", with: created_team.name
     check "Enrolling"
     click_button "Create Team"
 
@@ -46,7 +46,7 @@ feature 'admin makes a team enrolling', %{
   scenario "admin creates non-enrolling teams" do
     sign_in_as(admin)
     visit new_admin_team_path
-    fill_in "Name", with: created_team.name
+    fill_in "team_name", with: created_team.name
     click_button "Create Team"
 
     expect(Team.enrolling.count).to eq(1)
@@ -56,7 +56,7 @@ feature 'admin makes a team enrolling', %{
   scenario "admin updates a non-enrolling teams" do
     sign_in_as(admin)
     visit edit_admin_team_path(updated_team)
-    fill_in "Name", with: "New England Patriots 4 Life"
+    fill_in "team_name", with: "New England Patriots 4 Life"
     click_button "Update Team"
 
     expect(Team.enrolling.count).to eq(1)

@@ -19,7 +19,7 @@ feature 'admin creates a team membership', %{
     click_button "Add To Team"
 
     expect(page).to have_content("Team Membership Created!")
-    within ".team_memberships" do
+    within ".team-memberships" do
       expect(page).to have_content(admin.name)
     end
   end

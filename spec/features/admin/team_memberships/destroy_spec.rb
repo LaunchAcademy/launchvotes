@@ -23,7 +23,7 @@ feature 'admin destroys a team membership', %{
     expect(page).to have_content(admin.name)
     click_link "X"
     expect(page).to have_content("User Removed From Team")
-    within ".team_memberships" do
+    within ".team-memberships" do
       expect(page).to_not have_content(admin.name)
     end
   end
