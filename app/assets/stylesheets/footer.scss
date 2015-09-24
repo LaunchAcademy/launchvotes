@@ -1,0 +1,30 @@
+@import "colors";
+
+footer {
+  background: $pink;
+  height: 10rem;
+  padding: 3rem 0 0 3rem;
+
+  span {
+    font-weight: 400;
+  }
+
+  span:first-child {
+    color: $white;
+  }
+
+  span:last-child {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-left: 1.5rem;
+  }
+
+  a {
+    color: $white;
+    font-weight: 100;
+  }
+
+  a:hover {
+    color: $white;
+  }
+}
