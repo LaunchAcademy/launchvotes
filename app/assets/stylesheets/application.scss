@@ -1,14 +1,29 @@
 @import "foundation_and_overrides";
+@import "colors";
 @import "top_bar";
 @import "flash";
 @import "images";
 @import "buttons";
 @import "teams/*";
+@import "users/*";
 
 body {
-  font-family: 'Roboto', sans-serif;
+  background-color: $background;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+h1 {
+  font-size: 2.5rem;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+  font-weight: 100;
+}
+

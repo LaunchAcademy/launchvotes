@@ -20,7 +20,7 @@ feature 'user signs in', %{
       mock_github_auth!
 
       visit root_path
-      click_link "Sign in with Github"
+      click_link "Login with Github"
 
       expect(page).to have_content("Signed in as Alex Jarvis")
       expect(page).to have_link("Sign Out", href: destroy_user_session_path)
@@ -32,7 +32,7 @@ feature 'user signs in', %{
       enrolling_team = Team.first
 
       visit root_path
-      click_link "Sign in with Github"
+      click_link "Login with Github"
 
       expect(enrolling_team.users).to include(User.first)
     end
@@ -41,7 +41,7 @@ feature 'user signs in', %{
       OmniAuth.config.mock_auth[:github] = invalid_mock_github_auth!
 
       visit root_path
-      click_link "Sign in with Github"
+      click_link "Login with Github"
 
       expect(page).to have_content("Invalid credentials returned from Github")
     end
@@ -50,7 +50,7 @@ feature 'user signs in', %{
       OmniAuth.config.mock_auth[:github] = :invalid_credentials
 
       visit root_path
-      click_link "Sign in with Github"
+      click_link "Login with Github"
 
       expect(page).to have_content("Could not authenticate you from GitHub because \"Invalid credentials\"")
       expect(User.count).to eq(0)
@@ -78,7 +78,7 @@ feature 'user signs in', %{
       OmniAuth.config.mock_auth[:github].info.name = "Bogey"
 
       visit root_path
-      click_link "Sign in with Github"
+      click_link "Login with Github"
 
       expect(page).to have_content("Signed in as Bogey")
     end

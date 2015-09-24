@@ -11,6 +11,12 @@ nav.tab-bar,
     background: $dark-blue;
   }
 
+  .top-bar-section .dropdown {
+    border-bottom: 0.3rem solid $dark-blue;
+    border-left: 0.3rem solid $dark-blue;
+    border-right: 0.3rem solid $dark-blue;
+  }
+
   .top-bar-section .dropdown li:not(.has-form):not(.active) {
     & > a:not(.button) {
       background: $pink;
@@ -20,7 +26,7 @@ nav.tab-bar,
       background: darken($pink, 10%);
     }
 
-    &:not(:last-child) a {
+    &:not(:last-child) > a {
       border-bottom: 0.1rem solid $white;
     }
   }

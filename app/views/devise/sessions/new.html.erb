@@ -1,3 +1,34 @@
-<h2>Log in</h2>
+<div class="row">
+  <div class="login-section medium-12 small-12 columns">
+    <div class="text-center content-wrapper">
+      <h1>Welcome to LaunchVotes</h1>
+      <h2>For Weekly Nominations</h2>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="row">
+  <div class="about-section text-center small-12 columns">
+    <h1>About</h1>
+    <h3>LaunchVotes started as an innovative idea to promote the social and lighthearted environment here at Launch Academy. We hope to create a platform for fellow Launchers to nominate each other for all the strange and funny things that occur during the week.</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="about-us-section text-center small-12 columns">
+    <h1>Allow us to introduce ourselves</h1>
+    <div class="medium-6 small-12 columns">
+      <%= image_tag "Omid-Bachari.jpg", class: "image-nomination" %>
+      <h3>Omid Bachari</h3>
+      <h5><%= link_to "GitHub", "https://github.com/omidbachari", class: "pink" %></h5>
+      <h5><%= link_to "LinkedIn", "https://www.linkedin.com/in/omidbachari" %></h5>
+    </div>
+    <div class="medium-6 small-12 columns">
+      <%= image_tag "Alex-Morgan", class: "image-nomination" %>
+      <h3>Alex Morgan</h3>
+      <h5><%= link_to "GitHub", "https://github.com/AlexMorgan", class: "pink" %></h5>
+      <h5><%= link_to "LinkedIn", "https://www.linkedin.com/in/alexrmorgan" %></h5>
+    </div>
+  </div>
+</div>
