@@ -15,7 +15,10 @@ class Team < ActiveRecord::Base
   private
 
   def update_enrolling_teams
-    Team.enrolling.update_all(enrolling: false) if enrolling
+    if enrolling
+      Team.enrolling.update_all(enrolling: false)
+      update_columns(enrolling: true) if persisted?
+    end
   end
 
   def prevent_enrolling_team_destroy
@@ -23,7 +26,7 @@ class Team < ActiveRecord::Base
   end
 
   def ensure_one_enrolling_team
-    unless enrolling
+    if Team.enrolling.include?(self) && !enrolling
       errors.add(:enrolling, "must be set on at least one team")
     end
   end

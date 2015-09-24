@@ -37,10 +37,20 @@ describe Team do
     end
 
     describe "#update" do
+      it "should not make the enrolling team unenrolling if name is updated" do
+        original_enrolling_team.update(name: "Deadmau5 Fans")
+        expect(original_enrolling_team.reload.enrolling).to be true
+      end
+
       it "should make all other teams nonenrolling if a team is made enrolling" do
         original_nonenrolling_team.update(enrolling: true)
         expect(original_nonenrolling_team.enrolling).to be true
         expect(original_enrolling_team.reload.enrolling).to be false
+      end
+
+      it "should allow an unenrolling team's name to be updated" do
+        original_nonenrolling_team.update(name: "Deadmau5 Fans")
+        expect(original_nonenrolling_team.reload.name).to eq "Deadmau5 Fans"
       end
 
       it "should prevent the enrolling team from becoming unenrolling" do
