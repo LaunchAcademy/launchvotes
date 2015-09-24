@@ -1,0 +1,44 @@
+@import "../colors";
+
+.login-section {
+  background-color: $pink;
+  padding: 2rem;
+
+  @media only screen and (min-width: 40.063em) {
+    background-image: image-url("class.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 11rem 7em;
+  }
+
+  h1,
+  h2 {
+    color: $white;
+  }
+
+}
+
+@media only screen and (min-width: 40.063em) {
+  .content-wrapper {
+    background-color: rgba($pink, 0.5);
+    border-radius: 0.5rem;
+  }
+}
+
+.about-section {
+  margin: 1rem 0;
+
+  h1 {
+    color: $pink;
+  }
+}
+
+.about-us-section {
+  h1 {
+    color: $pink;
+  }
+
+  .pink {
+    color: $pink;
+  }
+}
