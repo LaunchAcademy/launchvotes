@@ -30,15 +30,17 @@
 
 .nomination {
   background: $dark-blue;
-  border: 0.2rem solid $white;
+  border: 0.2rem solid $background;
   border-radius: 0.4rem;
 
   h5 {
     color: $pink;
+    font-weight: 200;
   }
 
   h6 {
     color: $white;
+    font-weight: 200;
     height: 2.8rem;
     overflow-y: scroll;
   }
@@ -77,6 +79,12 @@
 
   .voted {
     right: 0.5rem;
+  }
+
+  .vote-count {
+    font-size: 1.2rem;
+    font-weight: normal;
+    right: 1.4rem;
   }
 }
 

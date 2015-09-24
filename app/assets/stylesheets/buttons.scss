@@ -23,3 +23,16 @@
     color: $white;
   }
 }
+
+.button-hollow-white {
+  @extend .button;
+  background-color: rgba($pink, 0);
+  border: 0.1rem solid $white;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background-color: $white;
+    color: $pink;
+  }
+}
