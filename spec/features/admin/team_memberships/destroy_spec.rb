@@ -21,7 +21,7 @@ feature 'admin destroys a team membership', %{
     visit admin_team_path(team_1)
 
     expect(page).to have_content(admin.name)
-    click_link "Remove From Team"
+    click_link "X"
     expect(page).to have_content("User Removed From Team")
     within ".team_memberships" do
       expect(page).to_not have_content(admin.name)
@@ -31,9 +31,9 @@ feature 'admin destroys a team membership', %{
   scenario "user must belong to at least one team" do
     sign_in_as(admin)
     visit admin_team_path(team_1)
-    click_link "Remove From Team"
+    click_link "X"
     visit admin_team_path(team_2)
-    click_link "Remove From Team"
+    click_link "X"
 
     expect(page).to have_content(admin.name)
     expect(page).to have_content(

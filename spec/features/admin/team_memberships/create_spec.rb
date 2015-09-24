@@ -15,7 +15,7 @@ feature 'admin creates a team membership', %{
   scenario "signed in admin creates team membership" do
     sign_in_as(admin)
     visit admin_team_path(team)
-    select admin.name, from: "User"
+    select admin.name, from: "team_membership_user_id"
     click_button "Add To Team"
 
     expect(page).to have_content("Team Membership Created!")

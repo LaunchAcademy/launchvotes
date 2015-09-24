@@ -25,7 +25,7 @@ feature 'admin creates a team', %{
 
     expect(page).to have_content("Team Created!")
     expect(page).to have_content(team.name)
-    expect(page).to have_content("Currently Enrolling")
+    expect(page).to have_content("(Enrolling)")
   end
 
   scenario "signed in admin fills in invalid information" do
