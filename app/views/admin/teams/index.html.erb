@@ -1,9 +1,29 @@
-<ul>
-  <% @teams.each do |team| %>
-    <li>
-      <%= link_to team.name, admin_team_path(team) %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="teams text-center small-12 columns">
+    <h1>Teams</h1>
+    <div class="row">
+      <div class="medium-6 medium-offset-4 small-10 small-offset-1 columns">
+        <table>
+          <thead>
+            <tr>
+              <th class="table-headers">Name</th>
+              <th class="table-headers">Enrolling</th>
+              <th class="table-headers">Member Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @teams.each do |team| %>
+              <tr>
+                <td><%= link_to team.name, admin_team_path(team) %></td>
+                <td class="text-center"><%= team.enrolling? ? "Yes" : "No" %></td>
+                <td class="text-center"><%= team.memberships.count %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<%= link_to "Create Team", new_admin_team_path %>
+    <%= link_to "Create Team", new_admin_team_path, class: "button-pink" %>
+  </div>
+</div>

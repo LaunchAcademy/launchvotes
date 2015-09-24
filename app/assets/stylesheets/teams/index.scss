@@ -1,0 +1,68 @@
+@import "../colors";
+
+table {
+  border-radius: 0.5rem;
+
+  .table-headers {
+    color: $dark-blue;
+  }
+
+  a {
+    color: $dark-blue;
+  }
+
+  .text-center {
+    color: $dark-blue;
+  }
+
+  a:hover {
+    color: $dark-blue;
+  }
+
+  tr:nth-child(even) {
+    background-color: rgba($pink, 0.2);
+  }
+}
+
+tr:nth-child(even):last-child {
+  td:first-child {
+    border-bottom-left-radius: 0.5em;
+  }
+
+  td:last-child {
+    border-bottom-right-radius: 0.5em;
+  }
+}
+
+thead {
+  tr {
+    background-color: rgba($pink, 0.5);
+  }
+
+  th:first-child {
+    border-top-left-radius: 0.5em;
+  }
+
+  th:last-child {
+    border-top-right-radius: 0.5em;
+  }
+}
+
+tbody {
+
+  tr:hover {
+    cursor: pointer;
+  }
+
+  tr:nth-child(odd) {
+    background-color: rgba($dark-blue, 0.1);
+  }
+
+  tr:nth-child(odd):hover {
+    background-color: rgba($dark-blue, 0.3);
+  }
+
+  tr:nth-child(even):hover {
+    background-color: rgba($pink, 0.5);
+  }
+}
