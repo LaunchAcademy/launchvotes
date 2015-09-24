@@ -26,6 +26,29 @@
     margin: 0;
     padding: 0;
   }
+
+  label[for="team_enrolling"] {
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-left: 6.5rem;
+  }
+
+  input[type="checkbox"] {
+    height: 1rem;
+    margin-left: 1rem;
+    margin-top: 0.75rem;
+    width: 1rem;
+  }
+
+  .error-explanation {
+    color: $white;
+    font-weight: 100;
+  }
+
+  ul {
+    list-style-type: none;
+  }
 }
 
 .nomination {
