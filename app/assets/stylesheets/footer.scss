@@ -11,12 +11,13 @@ footer {
 
   span:first-child {
     color: $white;
+    margin-right: 1.5rem;
   }
 
   span:last-child {
+    display: inline-block;
     font-size: 1rem;
     font-weight: normal;
-    margin-left: 1.5rem;
   }
 
   a {
