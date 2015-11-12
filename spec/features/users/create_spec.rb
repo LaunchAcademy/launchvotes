@@ -29,7 +29,7 @@ feature 'user signs in', %{
 
     scenario "expect new user to join currently enrolling team" do
       mock_github_auth!
-      enrolling_team = Team.first
+      enrolling_team = Team.enrolling.first
 
       visit root_path
       click_link "Login with Github"
