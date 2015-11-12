@@ -6,6 +6,10 @@ RSpec.configure do |config|
     create(:enrolling_team)
   end
 
+  config.after(:each) do
+    Team.delete_all
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

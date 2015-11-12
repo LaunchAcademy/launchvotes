@@ -7,6 +7,7 @@ feature 'vote destroy', %{
 
   Acceptance Criteria
   [x] A voter should be able to click "Voted!" on a nomination which they voted on to retract a vote
+  [x] Should occur without page reload
 } do
   let(:team) { create(:team) }
   let(:team_memberships) { create_list(:team_membership, 2, team: team) }
@@ -24,7 +25,21 @@ feature 'vote destroy', %{
     sign_in_as(user)
     click_link "Voted!"
 
+    within "#nomination-#{nomination.id}" do
+      expect(page).to have_content("Vote")
+    end
     expect(page).to have_content("Vote Retracted!")
+    expect(nomination.votes.count).to eq(0)
+  end
+
+  scenario "user retracts a vote without page reload", js: true do
+    sign_in_as(user)
+    click_link "Voted!"
+
+    within "#nomination-#{nomination.id}" do
+      expect(page).to have_content("Vote")
+    end
+    expect(page).to_not have_content("Vote Retracted!")
     expect(nomination.votes.count).to eq(0)
   end
 end

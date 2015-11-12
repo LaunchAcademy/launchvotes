@@ -23,4 +23,12 @@ Rails.application.routes.draw do
     end
     resources :team_memberships, only: [:destroy]
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :nominations, only: :none do
+        resources :votes, only: [:create, :destroy]
+      end
+    end
+  end
 end
