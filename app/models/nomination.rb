@@ -25,7 +25,12 @@ class Nomination < ActiveRecord::Base
       joins(:nominee_membership).merge(TeamMembership.all_except(user))
     end
   }
-  scope :awards, -> { joins(:votes).uniq }
+  scope :awards, -> {
+    select("nominations.*, count(votes.id) AS votes_count").
+    joins(:votes).
+    group("nominations.id").
+    order("votes_count")
+  }
 
   validates :nominee_membership, presence: true
   validates :body, presence: true
