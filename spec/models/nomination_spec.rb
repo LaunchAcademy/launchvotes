@@ -56,16 +56,27 @@ describe Nomination do
   end
 
   describe ".awards" do
-    let!(:nomination_with_votes) { create(:nomination) }
-    let!(:votes) { create_list(:vote, 2, nomination: nomination_with_votes) }
+    let!(:nomination_with_most_votes) { create(:nomination) }
+    let!(:votes) do
+      create_list(:vote, 2, nomination: nomination_with_most_votes)
+    end
+    let!(:nomination_with_least_votes) { create(:nomination) }
+    let!(:vote) { create(:vote, nomination: nomination_with_least_votes) }
     let!(:nomination_without_vote) { create(:nomination) }
     it "should show Nominations with at least one vote" do
-      expect(Nomination.awards).to include(nomination_with_votes)
+      expect(Nomination.awards).to include(
+        nomination_with_most_votes, nomination_with_least_votes
+      )
       expect(Nomination.awards).to_not include(nomination_without_vote)
     end
 
     it "should show nominations only once" do
-      expect(Nomination.awards.count).to eq(1)
+      expect(Nomination.awards.to_a.size).to eq(2)
+    end
+
+    it "should show order nominations by vote count" do
+      expect(Nomination.awards.first).to eq(nomination_with_least_votes)
+      expect(Nomination.awards.last).to eq(nomination_with_most_votes)
     end
   end
 end
