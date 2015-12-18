@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authorize_user!
 
   def show
-    @nominations = current_user.nominations.previous_weeks.awards
+    @awards = current_user.nominations.previous_weeks.awards
   end
 
   private

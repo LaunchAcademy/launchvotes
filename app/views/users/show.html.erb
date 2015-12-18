@@ -1,4 +1,4 @@
 <h1 class="text-center">Past Awards for <%= current_user.name %></h1>
 <div class="nominations row">
-  <%= render "nominations/awards" %>
+  <%= render partial: "nominations/awards", collection: @awards, as: :award %>
 </div>
