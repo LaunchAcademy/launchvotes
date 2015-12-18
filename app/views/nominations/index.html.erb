@@ -1,4 +1,4 @@
 <h1 class="text-center">Weekly Awards for <%= @team.name %></h1>
 <div class="nominations row">
-  <%= render "awards" %>
+  <%= render partial: "awards", collection: @awards, as: :award %>
 </div>
