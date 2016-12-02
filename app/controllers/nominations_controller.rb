@@ -5,7 +5,8 @@ class NominationsController < ApplicationController
   before_action :authorize_user!, only: [:index, :edit, :update, :destroy]
 
   def index
-    @awards = @team.nominations.current_week.awards
+    @awards = []
+    @team.nominations.current_week.awards.each { |award| @awards << award if award.votes.count > 3}
   end
 
   def edit
