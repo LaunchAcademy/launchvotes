@@ -6,8 +6,10 @@ class NominationsController < ApplicationController
 
   def index
     @awards = []
-    threshold = ENV['VOTE_THRESHOLD'].to_i
-    @team.nominations.current_week.awards.each { |award| @awards << award if award.votes.count > threshold}
+    threshold = ENV["VOTE_THRESHOLD"].to_i
+    @team.nominations.current_week.awards.each do |award|
+      @awards << award if award.votes.count > threshold
+    end
   end
 
   def edit
